@@ -41,3 +41,7 @@ void ConsoleUI:: displayMessage(const string& msg) const
 {
 	cout << msg << endl;
 }
+void ConsoleUI::clearConsole() const {
+
+	cout << "Game console is clear ";
+}
