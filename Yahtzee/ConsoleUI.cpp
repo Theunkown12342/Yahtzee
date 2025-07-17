@@ -1,47 +1,44 @@
 #include "ConsoleUI.h"
 using namespace std;
-void ConsoleUI::displayWelcomeMessage() const
-{
-	cout << " Welcome to Yahtzee!" << endl;
-	cout << " Get ready to roll some dice!!!!! " << endl;
-}
-void ConsoleUI::displayScoreCard(vector<int>& scores)const
-{
-	cout << " This is the score card " << endl;
-	for (size_t i = 0; i < scores.size(); i++) {
-		cout << " Category " << i << ": " << scores[i] << endl;
-	}
-}
-void ConsoleUI::displayDiceRoll(vector<int>& dice)const {
-	cout << "Your current Dice" << endl;
-	for (int value : dice)
-		cout << "[ " << value << "]" << endl;
-	
-}
-void ConsoleUI::proptReroll(vector<bool>& rerollChoices) const
-{
-	cout << "Please select Y to reroll each dice, or press N to keep your roll" << endl;
-	for (size_t i = 0; i < rerollChoices.size(); i++) {
-		char input;
-		cout << "Dice " << i + 1 << "; ";
-		cin >> input;
-	}
-}
-void ConsoleUI:: promptCategoryChoice(int& category)const {
-	cout << "Pleas select a category to score (0-12): ";
-	cin >> category;
-}
-void ConsoleUI::showFinalScore(vector<int>& scores)const
-{
-	cout << "The final scores are: " << endl;
-	displayScoreCard(scores);
-	cout << "Thanks for playing Yahtzee!!!" << endl;
-}
-void ConsoleUI:: displayMessage(const string& msg) const
-{
-	cout << msg << endl;
-}
-void ConsoleUI::clearConsole() const {
 
-	cout << "Game console is clear ";
+
+void ConsoleUI::displayWelcome() const {
+    std::cout << " Welcome to Yahtzee!\n";
 }
+
+void ConsoleUI::displayDicePrompt(const int values[5]) const {
+    std::cout << "Dice: ";
+    for (int i = 0; i < 5; ++i)
+        std::cout << "[" << values[i] << "] ";
+    std::cout << "\n";
+}
+
+void ConsoleUI::getRerollFlags(bool flags[5]) const {
+    std::cout << "Enter 1 to keep or 0 to reroll each die:\n";
+    for (int i = 0; i < 5; ++i) {
+        int input;
+        std::cout << "Die " << i + 1 << ": ";
+        std::cin >> input;
+        flags[i] = (input == 1);
+    }
+}
+
+int ConsoleUI::getCategoryChoice() const {
+    std::cout << "Choose a scoring category:\n";
+    std::cout << "0. Aces\n1. Twos\n2. Threes\n3. Fours\n4. Fives\n5. Sixes\n";
+    int choice;
+    std::cin >> choice;
+    return choice;
+}
+
+void ConsoleUI::showFinalScore(int score) const {
+    std::cout << " Final Score: " << score << "\n";
+}
+
+bool ConsoleUI::promptPlayAgain() const {
+    char response;
+    std::cout << "Play again? (y/n): ";
+    std::cin >> response;
+    return (response == 'y' || response == 'Y');
+}
+

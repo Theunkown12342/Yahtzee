@@ -5,17 +5,25 @@
 using namespace std;
 class ConsoleUI
 {
-private:
-	void clearConsole()const;
 public:
-	void displayWelcomeMessage() const;
-	void displayScoreCard( vector<int>& scores)const;
-	void displayDiceRoll(vector<int>& dice)const;
-	void proptReroll(vector<bool>& rerollChoices) const;
-	void promptCategoryChoice(int& category)const;
-	void showFinalScore( vector<int>& scores)const;
-	void displayMessage(const string&msg ) const;
+    void displayWelcome() const;
+    void displayDicePrompt(const int values[5]) const;
+    void getRerollFlags(bool flags[5]) const;
+    int getCategoryChoice() const;
+    void showFinalScore(int score) const;
+    bool promptPlayAgain() const;
+
+
+
+
+
 
 };
 #endif
+
+
+
+
+
+
 

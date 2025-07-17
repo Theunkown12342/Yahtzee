@@ -2,24 +2,22 @@
 
 #include <string>
 using namespace std;
-Die::Die() { numberOfSides = 6; faceValue = 1; };
-void Die::setNumofSides(int s) {
-	numberOfSides = s;
+Die::Die(int sides) : sides(sides), faceValue(1) {
+    std::srand(static_cast<unsigned>(std::time(nullptr)));
 }
-void Die::setfaceValue(int v) {
-	faceValue = v;
-}
-int Die::getNumofSides() const {
-	return numberOfSides;
-}
-int Die::getfaceValue()const {
-	return faceValue;
-}
+
 void Die::roll() {
-	faceValue = rand() % numberOfSides + 1;
+    faceValue = std::rand() % sides + 1;
 }
-string Die::displayDice() const
-{
-	return "Dice with " + to_string(numberOfSides) +
-		" sides showing " + to_string(faceValue);
+
+int Die::getFaceValue() const {
+    return faceValue;
+}
+
+void Die::setFaceValue(int value) {
+    if (value >= 1 && value <= sides)
+        faceValue = value;
+}
+
+
 

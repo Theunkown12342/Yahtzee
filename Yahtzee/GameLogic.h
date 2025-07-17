@@ -2,26 +2,29 @@
 #define GAMELOGIC
 #include <iostream>
 #include <vector>
+#include "Die.h"
 class GameLogic
 {
-	GameLogic();
-private:
-	int countOccurrences(vector<int>& dice, int value);
-	bool isFullHouse(vector<int>& dice);
-	bool isSmallStraight(vector<int>& dice);
-	bool isLargestStraight(vector<int>& dice);
-	bool isYahtzee(vector<int>& dice);
-
 public:
-	void rollDice(vector<int>& dice);
-	void reRollDice(vector<int>& dice, vector<bool>& reroll);
+    GameLogic();
+    void playTurn();
+    bool isGameOver() const;
+    int getTotalScore() const;
 
-	int calculatedScore(vector<int>& dice);
-	bool isCategoryUsed(int category) const;
-	void markCategoryUsed(int c);
+    void displayDice() const;
+    void rerollDice(const bool keepFlags[5]);
+    void markCategoryUsed(int category);
+    bool isCategoryUsed(int category) const;
+    int calculateScore(int category) const;
 
-	bool isGameOver() const;
-	void resetGame();
+private:
+    Die dice[5];
+    bool categoriesUsed[6];
+    int totalScore;
+
+
+
+
 };
 #endif
 
